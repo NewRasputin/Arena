@@ -25,24 +25,30 @@ namespace Arena
 
         public class Fighter
         {
-            public int health;
-
-            public void setHealth()
-            {
-                health = r.Next(90, 141);
-            }
+            public int health = r.Next(90, 141);
         }
+
+        Fighter fighter1 = new Fighter();
 
         public void generateFighter()
         {
-            Fighter fighter1 = new Fighter();
-            fighter1.setHealth();
-            textBox1.Text = "An enemy aproaches with" + fighter1.health.ToString() + " hp and toting a pistol that deals out " + pistol["damage"] + " damage";
+            textBox1.AppendText("An enemy aproaches with " + fighter1.health.ToString() + " hp and a pistol that deals out " + pistol["damage"] + " damage..." + Environment.NewLine);
+        }
+
+        public void shootEm()
+        {
+            fighter1.health = fighter1.health - pistol["damage"];
+            textBox1.AppendText(fighter1.health.ToString() +Environment.NewLine);
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
             generateFighter();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            shootEm();
         }
     }
 }
